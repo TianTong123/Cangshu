@@ -1,0 +1,195 @@
+.logo{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 700px;
+  height: 500px;
+  animation:show-logo-top 8s linear infinite;
+}
+/* 这个特效是旋转整个logo然后展开，其他部件的动画是通过是否关闭这个class名字生效 */
+.run-logo{
+  animation:runLogo 1s cubic-bezier(.77,0,.18,1);
+}
+@keyframes runLogo{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }
+}
+.close-run-logo{
+  animation:closeRunLogo 1s cubic-bezier(.77,0,.18,1), show-logo-top 8s linear 1s infinite;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+}
+@keyframes closeRunLogo{
+  0%{ transform: rotate(-350deg); }
+  100%{ transform: rotate(-5deg); }
+}
+.logo .logo-bg{
+  background-image: url(../images/logo.png);
+  background-repeat: no-repeat;
+  background-size: 700px 500px;
+}
+
+/* 顶部的杠 */
+.logo .logo-top{
+  position: absolute;
+  width: 100%;
+  height: 135px;
+  left: 80px;
+  transform-origin: 500px 90px;
+  animation:show-logo-top 4s cubic-bezier(.68,-0.55,.27,1.55) infinite;
+}
+@keyframes show-logo-top{
+  0%{ transform: rotate(-5deg); }
+  50%{ transform: rotate(5deg);}
+  100%{ transform: rotate(-5deg); }
+}
+.run-logo .logo-top{
+  animation: runlogoTop 1s linear .5s, runlogoTop2 2.5s linear 1.5s infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes runlogoTop{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(190deg); }
+}
+@keyframes runlogoTop2{
+  0%{ transform: rotate(190deg); }
+  50%{ transform: rotate(170deg);}
+  100%{ transform: rotate(190deg);}
+}
+.close-run-logo .logo-top{
+  transform: rotate(180deg);
+  animation: closeRunLogoTop 1s linear .5s, show-logo-top 4s cubic-bezier(.68,-0.55,.27,1.55) 1.5s infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes closeRunLogoTop{
+  0%{ transform: rotate(180deg); }
+  100%{ transform: rotate(0deg); }
+}
+.logo .openTop{
+  animation: openTop 2s linear, runOpenTop 2s linear 2s infinite;
+}
+@keyframes openTop{
+  0%{ transform: rotate(0deg); }
+  40%{ transform: rotate(110deg);}
+  65%{ transform: rotate(70deg);}
+  100%{ transform: rotate(100deg); }
+}
+@keyframes runOpenTop{
+  0%{ transform: rotate(100deg);}
+  50%{transform: rotate(80deg);}
+  100%{ transform: rotate(100deg);}
+}
+.logo .closeTop{
+  animation:closeTop 1s linear 1, show-logo-top 4s cubic-bezier(.68,-0.55,.27,1.55) 1s infinite;
+}
+@keyframes closeTop{
+  0%{ transform: rotate(90deg); }
+  100%{ transform: rotate(0deg); }
+}
+
+/* 下面的字 */
+.logo .logo-font{
+  position: absolute;
+  top: 140px;
+  width: 220px;
+  height: 200px;
+}
+.logo .num1{
+  left: 10px;
+  background-position: 0 -137px;
+  animation:show-num1 4s linear  .3s infinite;
+  animation-fill-mode:forwards;
+}
+@keyframes show-num1{
+  0%{top: 160px; left: 10px; }
+  50%{top: 180px; left: 30px; background-size: 700px 250px;background-position: 0 -71px; height: 100px}
+  100%{top: 160px; left: 10px; }
+}
+.num2{
+  left: 215px;
+  background-position: -217px -137px;
+  animation:show-num2 2s linear infinite;
+}
+@keyframes show-num2{
+  0%{ top: 130px; }
+  50%{ top: 150px;}
+  100%{ top: 130px; }
+}
+.num3{
+  left: 430px;
+  background-position: -430px -137px;
+  animation:show-num3 3s linear infinite;
+}
+@keyframes show-num3{
+  0%{ transform: rotate(-5deg); }
+  50%{ transform: rotate(5deg);}
+  100%{ transform: rotate(-5deg); }
+}
+
+/* 底部的杠 */
+.logo .logo-bottom{
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 340px;
+  background-position: 0 -340px;
+  animation:show-bottom 2s linear infinite;
+}
+@keyframes show-bottom{
+  0%{ top: 335px; }
+  50%{ top: 310px;}
+  100%{ top: 335px; }
+}
+.run-logo .logo-bottom{
+  transform-origin: 140px 40px;
+  animation: runlogoBottom 1s linear .5s, runlogoBottom2 2.5s linear 1.5s infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes runlogoBottom{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(190deg); }
+}
+@keyframes runlogoBottom2{
+  0%{ transform: rotate(190deg); }
+  50%{ transform: rotate(170deg); }
+  100%{ transform: rotate(190deg); }
+}
+.close-run-logo .logo-bottom{
+  transform: rotate(180deg);
+  transform-origin: 140px 40px;
+  animation: closeRunLogoBottom 1s linear .5s, show-bottom 2s linear infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes closeRunLogoBottom{
+  0%{ transform: rotate(180deg); }
+  100%{ transform: rotate(0deg); }
+}
+.logo .openBottom{
+  transform-origin: 585px 20px;
+  animation:show-openBottom 2s linear 1, run-open 2s linear 2s infinite;
+  transform: rotate(-90deg); 
+}
+@keyframes show-openBottom{
+  0%{ transform: rotate(0deg); }
+  40%{ transform: rotate(-110deg);}
+  65%{ transform: rotate(-70deg);}
+  100%{ transform: rotate(-100deg); }
+}
+@keyframes run-open{
+  0%{ transform: rotate(-100deg);}
+  50%{transform: rotate(-80deg);}
+  100%{ transform: rotate(-100deg);}
+}
+.logo .closeBottom{
+  transform-origin: 585px 20px;
+  animation:closeBottom 1s linear 1, show-bottom 2s linear 1s infinite;
+}
+.close-run-logo .closeBottom{
+  transform: rotate(0deg);
+  transform-origin: 585px 20px;
+  animation:closeBottom 1s linear 1, show-bottom 2s linear 1s infinite;
+}
+@keyframes closeBottom{
+  0%{ transform: rotate(-90deg); }
+  100%{ transform: rotate(0deg); }
+}

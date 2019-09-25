@@ -1,0 +1,39 @@
+.wrap {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transition-duration: 1s;
+}
+.wrap .inp {
+  margin: 0 auto 50px auto;
+  width: 360px;
+  height: 50px;
+}
+.wrap .inp input{
+  padding-left: 20px;
+  width: 340px;
+  height: 50px;
+  border: 0px;
+  border-radius: 25px;
+  line-height: 50px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.wrap .title{
+  line-height: 90px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500px;
+  color: #fff;
+}
+.wrap .btn{
+  text-align: center;
+  background-color: aqua;
+  border: 0px;
+  border-radius: 25px;
+  color: #fff;
+  line-height: 50px;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+}
