@@ -2,6 +2,7 @@
   position: relative;
   display: block;
   margin: 0 auto;
+  z-index: 10;
   width: 700px;
   height: 500px;
   animation:show-logo-top 8s linear infinite;

@@ -5,8 +5,12 @@
       <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
       <!-- 用户按钮 -->
       <div class="user-btn" @click="showUserInfo"></div>
-      <!-- 背景音乐 -->
-      <div class="bg-music"><video src=""></video></div>
+      <!-- 音乐按钮 -->
+      <div class="bg-music" @click="bgmBtn($event)"> 
+        <audio autoplay="autoplay" ref="bgm">
+          <source src="../../../static/music/bg.mp3" type="audio/mp3"/>
+        </audio>
+      </div>
       <!-- logo -->     
       <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px'}" class="logo-wrap">
         <logo 
@@ -49,7 +53,8 @@ export default {
     return{
       logoMarginTop: -250,//logo的垂直位置
       logoMarginLeft: -350,//logo的水平位置
-      shade: true,
+      shade: true,//开始游戏的遮罩
+      musicBtn: true,//true播放音乐，反之暂停音乐
       contentShow: false,//开始游戏按钮
       showReturnbtn: false,//左上角的返回按钮
       returnEvent: 0, // 1：登录返回，2：排行榜返回，3：用户返回
@@ -72,14 +77,28 @@ export default {
      * 登录
      */
     showLoginWrap(){
-      this.$router.push({ path: "/snake/login" });//跳转到登录页
+      this.$router.push({ path: '/snake/login' });//跳转到登录页
       this.openBottomFlag = true;
       this.closeBottomFlag = false;
       this.contentShow = false;
       this.showReturnbtn = true;
       this.returnEvent = 1;
-      this.logoMarginTop = -450;
+      this.logoMarginTop = -420;
       this.loginShow = true;
+    },
+    /**
+     * 音乐按钮
+     */
+    bgmBtn(e){
+      let e1 = event.currentTarget;
+      if(this.musicBtn){
+        this.$refs.bgm.pause();
+        e1.style.animationPlayState = "paused";
+      }else{
+        this.$refs.bgm.play();
+        e1.style.animationPlayState = "running";
+      }    
+      this.musicBtn = !this.musicBtn;
     },
     /**
      * 排行榜
@@ -114,6 +133,7 @@ export default {
     returnbtn(){
       switch( this.returnEvent){
         case 1:
+          this.$router.push({ path: '/snake/index' });//跳转到登录页
           this.openBottomFlag = false;
           this.closeBottomFlag= true;
           this.closeRunLogo = false;
@@ -139,6 +159,9 @@ export default {
       this.logoMarginLeft = -350;
       this.loginShow = false;
     },
+    /**
+     * 全屏
+     */
     fullScreen(){
       let element = document.documentElement;
       if (element.requestFullscreen) {

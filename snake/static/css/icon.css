@@ -1,0 +1,12 @@
+.snake_yello{
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: 800px 468px;
+  background-position:-23px -345px;
+}
+.title_box{
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: 600px 350px;
+  background-position:-37px -103px;
+}
