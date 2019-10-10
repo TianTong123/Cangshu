@@ -1,0 +1,109 @@
+.rank{
+  width: 600px;
+  height: 450px;
+  overflow: hidden;
+}
+.card{
+  position: relative;
+  left:  600px;
+  display: block;
+  margin-bottom: 20px;
+  width: 340px;
+  height: 70px;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'CharlisSILTalic'; 
+  animation-fill-mode: forwards;
+}
+.order0{
+  margin-left: 200px;
+  animation: rankShow .1s cubic-bezier(.68,-0.55,.27,1.55) .3s 1;
+  animation-fill-mode: forwards;
+}
+.order1{
+  margin-left: 150px;
+  animation: rankShow .1s cubic-bezier(.68,-0.55,.27,1.55) .4s 1;
+  animation-fill-mode: forwards;
+}
+.order2{
+  margin-left: 100px;
+  animation: rankShow .1s cubic-bezier(.68,-0.55,.27,1.55) .5s 1;
+  animation-fill-mode: forwards;
+}
+.order3{
+  margin-left: 50px;
+  animation: rankShow 2s cubic-bezier(.68,-0.55,.27,1.55) .6s 1;
+  animation-fill-mode: forwards;
+}
+.order4{
+  margin-left: 0px;
+  animation: rankShow .1s linear 2.6s 1;
+  animation-fill-mode: forwards;
+}
+@keyframes rankShow{
+ 0%{ left: 600px;}
+ 100%{ left: 0px;}
+}
+.card div{
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}
+.numName{
+  line-height: 40px;
+  font-size: 20px;
+}
+.num{
+  margin-left: 70px;
+  font-size: 60px;
+  font-style: oblique;
+  line-height: 55px;
+  color:#6EDE6D;
+}
+.order0 .num{
+  color: #FFDB63;
+}
+.order1 .num{
+  color: #B4B4B4;
+}
+.order2 .num{
+  color: #DCB771;
+}
+.numName{
+  line-height: 25px;
+}
+.score{
+  width: 190px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 50px;
+  font-style: oblique;
+  padding-right: 10px;
+  background-image:-webkit-linear-gradient(top,#63D302,#6EDE6D,#9AFA98); 
+    -webkit-background-clip:text; 
+    -webkit-text-fill-color:transparent;
+}
+.order0 .score{
+  background-image:-webkit-linear-gradient(top,#FFDB63,#FEFF97,#FCFFFE); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.order1 .score{
+  background-image:-webkit-linear-gradient(top,#B4B4B4,#CCD0D1,#F0F1F3); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.order2 .score{
+  background-image:-webkit-linear-gradient(top,#C08842,#DCB771,#F5D182); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+}
+.data{
+  margin: -5px 15px 0 0;
+  float: right;
+  font-size: 13px;
+  font-weight: 400;
+}

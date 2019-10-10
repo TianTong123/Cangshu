@@ -51,16 +51,19 @@
 	</div>
 </template>
 <script>
-	import game from '../../../static/js/game.js'  
+	import {init } from '../../../static/js/game.js'  
     export default {  
         components: {
-        	game,
-        },
+   
+				},
         data () {
+					return{
 
-        },
-        created () { //页面加载前生命周期函数
-		},
+					}
+				},
+				mounted(){
+						init();				
+				},
 		methods: {
     	}
     }
