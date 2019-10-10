@@ -12,12 +12,20 @@ export default new Router({
       redirect: '/snake/index',
     },
     {
-          path: '/hello',
-          name: 'test',
-          meta: {
-             keepAlive: true // 需要被缓存 
-          },
-          component: resolve => require(['../components/HelloWorld.vue'], resolve)
+      path: '/snake/game',
+      name: '游戏',
+      meta: {
+         keepAlive: true // 需要被缓存 
+      },
+      component: resolve => require(['../components/page/game.vue'], resolve)
+     },
+    {
+      path: '/hello',
+      name: 'test',
+      meta: {
+         keepAlive: true // 需要被缓存 
+      },
+      component: resolve => require(['../components/HelloWorld.vue'], resolve)
      },
     {
       path: '/snake',
