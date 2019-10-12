@@ -3,6 +3,10 @@ import Router from 'vue-router'
 
 
 Vue.use(Router);
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 export default new Router({
   routes: [
@@ -12,21 +16,13 @@ export default new Router({
       redirect: '/snake/index',
     },
     {
-      path: '/snake/game',
+      path: '/game',
       name: '游戏',
       meta: {
-         keepAlive: true // 需要被缓存 
+         keepAlive: false // 需要被缓存 
       },
       component: resolve => require(['../components/page/game.vue'], resolve)
-     },
-    {
-      path: '/hello',
-      name: 'test',
-      meta: {
-         keepAlive: true // 需要被缓存 
-      },
-      component: resolve => require(['../components/HelloWorld.vue'], resolve)
-     },
+    },
     {
       path: '/snake',
       name: '首页',
@@ -51,6 +47,22 @@ export default new Router({
              keepAlive: true // 需要被缓存 
           },
           component: resolve => require(['../components/page/login.vue'], resolve)
+        },
+        {
+          path: 'rank',
+          name: '排行',
+          meta: {
+             keepAlive: true // 需要被缓存 
+          },
+          component: resolve => require(['../components/page/rank.vue'], resolve)
+        },
+        {
+          path: 'info',
+          name: '用户页面',
+          meta: {
+             keepAlive: true // 需要被缓存 
+          },
+          component: resolve => require(['../components/page/info.vue'], resolve)
         },
       ]
     },

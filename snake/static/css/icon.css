@@ -4,6 +4,18 @@
   background-size: 800px 468px;
   background-position:-23px -345px;
 }
+.snake_purple{
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: 800px 468px;
+  background-position:-23px -18px;
+}
+.snake_red{
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: 800px 468px;
+  background-position:-435px -345px;
+}
 .title_box{
   background-image: url(../images/icon.png);
   background-repeat: no-repeat;
