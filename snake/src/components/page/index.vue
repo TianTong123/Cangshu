@@ -1,18 +1,20 @@
 <template>
   <div class="index">
-     <div class="wrap">
-      <!-- 返回按钮 -->
-      <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
-      <!-- 用户按钮 -->
-      <div class="user-btn" @click="showUserInfo"></div>
-      <!-- 音乐按钮 -->
-      <div class="bg-music" @click="bgmBtn($event)"> 
-        <audio loop autoplay ref="bgm">
-          <source src="../../../static/music/bg.mp3" type="audio/mp3"/>
-        </audio>
-      </div>
+    <!-- 背景 -->
+    <div class="bg" v-if="!infoShow"></div>
+    <!-- 返回按钮 -->
+    <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
+    <!-- 用户按钮 -->
+    <div class="user-btn" @click="showUserInfo"></div>
+    <!-- 音乐按钮 -->
+    <div class="bg-music" @click="bgmBtn($event)"> 
+      <audio loop autoplay ref="bgm">
+        <source src="../../../static/music/bg.mp3" type="audio/mp3"/>
+      </audio>
+    </div>
+    <div class="wrap">
       <!-- logo -->     
-      <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
+      <div ref="logoWrap" v-if="!infoShow" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
         <logo 
           :openBottom="openBottomFlag" :closeBottom="closeBottomFlag"
           :openTop="openTop" :closeTop="closeTop"
@@ -133,13 +135,13 @@ export default {
     showUserInfo(){
       this.$router.push({ path: '/snake/info' });//跳转到用户页
       this.infoShow = true;//显示用户信息页
-      this.closeBottomFlag= false;
-      this.closeTop = false;
-      this.openRunLogo = true;//旋转logo
-      this.closeRunLogo = false;
+      //this.closeBottomFlag= false;
+      //this.closeTop = false;
+      //this.openRunLogo = true;//旋转logo
+      //this.closeRunLogo = false;
       this.showReturnbtn = true;
       this.returnEvent = 3;
-      this.logoMarginTop = -450;
+      //this.logoMarginTop = -450;
       this.contentShow = false;
     },
     /**

@@ -1,0 +1,94 @@
+.info{
+  width: 100%;
+  height: 100%;
+}
+canvas{
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+.wrap{
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+}
+.wrap button{
+  position: absolute;
+  z-index: 11;;
+}
+
+.header{
+	position: relative;
+  display: block;
+  margin: 0 auto;
+	width: 100%;
+	height: 200px;
+	border-radius: 0 0 4px 4px;
+	overflow: hidden;
+}
+/* 此处更换背景图 */
+.header .bg{
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url('../images/bbg.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position-y: -130px;
+}
+.header .wrap{
+	position: absolute;
+	bottom: 20px;
+	z-index: 20;
+	width: 100%;
+	height: 80px;
+	cursor: pointer;
+}
+.header .wrap .user-img{
+	position: relative;
+	display: inline-block;
+	margin: 5px 0 5px 30px;
+	width: 70px;
+	height: 70px;
+	border-radius: 35px;
+	border: 1px solid #aaa;
+	overflow: hidden;
+}
+.header .wrap .user-img img{
+	width: 100%;
+}
+.header .wrap .user-name{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	margin: 15px 5px 0 15px;
+	width: auto;
+	height: 22px;
+	color: #fff;
+	font-weight: 700;
+	font-size: 18px;
+}
+.header .wrap .user-vip{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 17px;
+	width: 30px;
+	height: 22px;
+	background-color: #FF6C00;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 15px;
+	line-height: 22px;
+	text-align: center;
+}
+.header .wrap .info{
+	position: absolute;
+	top: 50px;
+	left: 120px;
+	font-size: 14px;
+	color: #fff;
+
+}

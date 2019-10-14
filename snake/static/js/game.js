@@ -333,5 +333,5 @@ function init() {
 }
 
 export{
-    init
+    init, newGame
 }

@@ -51,7 +51,7 @@
 	</div>
 </template>
 <script>
-	import {init } from '../../../static/js/game.js'  
+	import {init,newGame } from '../../../static/js/game.js'  
     export default {  
         components: {
    
@@ -62,7 +62,8 @@
 					}
 				},
 				mounted(){
-						init();				
+						init();			
+						newGame();	
 				},
 		methods: {
     	}
