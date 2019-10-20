@@ -1,7 +1,8 @@
 <template>
   <div class="index">
     <!-- 背景 -->
-    <div class="bg" v-if="!infoShow"></div>
+    <div class="bg"></div>
+    <!-- <canvas id="canvas"></canvas> -->
     <!-- 返回按钮 -->
     <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
     <!-- 用户按钮 -->
@@ -14,7 +15,7 @@
     </div>
     <div class="wrap">
       <!-- logo -->     
-      <div ref="logoWrap" v-if="!infoShow" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
+      <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
         <logo 
           :openBottom="openBottomFlag" :closeBottom="closeBottomFlag"
           :openTop="openTop" :closeTop="closeTop"
@@ -41,11 +42,12 @@
 </template>
 <script>
 import logo from "../compon/logo.vue"
+
 export default {
   name:"index",
   components:{logo},
   mounted() {
-    
+
   }, 
   data(){
     return{
@@ -135,13 +137,15 @@ export default {
     showUserInfo(){
       this.$router.push({ path: '/snake/info' });//跳转到用户页
       this.infoShow = true;//显示用户信息页
-      //this.closeBottomFlag= false;
-      //this.closeTop = false;
-      //this.openRunLogo = true;//旋转logo
-      //this.closeRunLogo = false;
+      this.closeBottomFlag= false;
+      this.closeTop = false;
+      this.openRunLogo = true;//旋转logo
+      this.closeRunLogo = false;
       this.showReturnbtn = true;
       this.returnEvent = 3;
-      //this.logoMarginTop = -450;
+      this.logoMarginTop = 0;
+      this.tsfDeg = 'rotate(90deg)';
+      this.logoMarginLeft = -100;
       this.contentShow = false;
     },
     /**

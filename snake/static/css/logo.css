@@ -10,6 +10,8 @@
 /* 这个特效是旋转整个logo然后展开，其他部件的动画是通过是否关闭这个class名字生效 */
 .run-logo{
   animation:runLogo 1s cubic-bezier(.77,0,.18,1);
+/*   animation-direction: reverse;
+  animation-fill-mode: forwards; */
 }
 @keyframes runLogo{
   0%{ transform: rotate(0deg); }
