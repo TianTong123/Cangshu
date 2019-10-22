@@ -1,16 +1,19 @@
 <template>
   <div class="index">
-     <div class="wrap">
-      <!-- 返回按钮 -->
-      <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
-      <!-- 用户按钮 -->
-      <div class="user-btn" @click="showUserInfo"></div>
-      <!-- 音乐按钮 -->
-      <div class="bg-music" @click="bgmBtn($event)"> 
-        <audio loop autoplay ref="bgm">
-          <source src="../../../static/music/bg.mp3" type="audio/mp3"/>
-        </audio>
-      </div>
+    <!-- 背景 -->
+    <div class="bg"></div>
+    <!-- <canvas id="canvas"></canvas> -->
+    <!-- 返回按钮 -->
+    <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
+    <!-- 用户按钮 -->
+    <div class="user-btn" @click="showUserInfo"></div>
+    <!-- 音乐按钮 -->
+    <div class="bg-music" @click="bgmBtn($event)"> 
+      <audio loop autoplay ref="bgm">
+        <source src="../../../static/music/bg.mp3" type="audio/mp3"/>
+      </audio>
+    </div>
+    <div class="wrap">
       <!-- logo -->     
       <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
         <logo 
@@ -39,11 +42,12 @@
 </template>
 <script>
 import logo from "../compon/logo.vue"
+
 export default {
   name:"index",
   components:{logo},
   mounted() {
-    
+
   }, 
   data(){
     return{
@@ -139,7 +143,9 @@ export default {
       this.closeRunLogo = false;
       this.showReturnbtn = true;
       this.returnEvent = 3;
-      this.logoMarginTop = -450;
+      this.logoMarginTop = 0;
+      this.tsfDeg = 'rotate(90deg)';
+      this.logoMarginLeft = -100;
       this.contentShow = false;
     },
     /**

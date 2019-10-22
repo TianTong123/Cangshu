@@ -1,0 +1,103 @@
+/*
+* @Author: 哈世界
+* @Date:   2017-11-19 14:10:10
+* @Last Modified by:   哈世界
+* @Last Modified time: 2017-12-12 16:09:55
+*/
+.option3 ul{
+	position: relative;
+	width: 250px;
+	height: 250px;
+	margin: 0px auto;
+	transform-style:preserve-3d;
+	animation: music 2s linear infinite;
+}
+.option3 ul li{
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	list-style: none;/* 去掉 li 的点 */
+
+}
+.option3 ul li:nth-of-type(1){
+	background: url('../images/s1ring.png');
+  transform : rotateX(180deg) translateZ(0px);
+	background-size: 100%;
+	animation: music1 1.5s linear infinite;
+}
+
+.option3 ul li:nth-of-type(2){
+	background: url('../images/s1ring.png')no-repeat center;
+	transform :  translateZ(0px);
+	background-size: 85%;
+	animation: music2 1s linear infinite;	
+}
+.option3 ul li:nth-of-type(3){
+	background: url('../images/s1ring.png')no-repeat center;
+	transform :  translateZ(100px);
+	background-size: 40%;
+	animation: music3 2.5s Linear infinite;
+}
+.option3 .uid{
+	transform :  rotate(15deg);
+	animation: uid 8s Linear infinite; 
+}
+.option3 .uid .title{
+	font-size: 80px;
+	line-height: 80px;
+}
+.option3 .uid .line{
+	display: block;
+	margin-top: 7px;
+	width: 150px;
+	height: 2px;
+	background-color: #fff;
+}
+.option3 .uid span{
+	line-height: 30px;
+}
+@keyframes music{
+	0%{transform: rotateX(0deg) rotateY(0deg);}
+	25%{transform: rotateX(10deg) rotateY(15deg);}
+	50%{transform: rotateX(0deg) rotateY(0deg);}
+	75%{transform: rotateX(-10deg) rotateY(-10deg);}
+	100%{transform: rotateX(0deg) rotateY(0deg);}
+}
+@keyframes music1{
+	0%{
+		transform:translateZ(0px) rotate(0deg);
+	}
+	50%{
+		transform:translateZ(-50px) rotate(180deg);
+		
+	}
+	100%{
+		transform:translateZ(0px) rotate(360deg);
+	}
+}
+@keyframes music2{
+	0%{
+		transform:translateZ(10px) rotate(0deg);
+	}
+	50%{
+		transform:translateZ(-10px) rotate(-180deg);
+	}
+	100%{
+		transform:translateZ(10px) rotate(-360deg);
+	}
+}
+@keyframes music3{
+	0%{
+		transform: rotate(0deg) rotateX(0deg);
+	}
+	100%{
+		transform: rotate(-360deg) rotateX(0deg);
+	}
+}
+@keyframes uid{
+	0%{transform: rotateX(0deg) rotateY(0deg) rotate(15deg);}
+	25%{transform: rotateX(10deg) rotateY(15deg) rotate(15deg);}
+	50%{transform: rotateX(0deg) rotateY(0deg) rotate(15deg);}
+	75%{transform: rotateX(-10deg) rotateY(-10deg) rotate(15deg);}
+	100%{transform: rotateX(0deg) rotateY(0deg) rotate(15deg);}
+}
