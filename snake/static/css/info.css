@@ -1,3 +1,13 @@
+/* 禁止文字选择 */
+.edit, .btn, .uid{
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently*/
+}
+
 .info{
 	position: absolute;
 	width: 100%;
@@ -20,32 +30,19 @@ canvas{
 	-ms-filter: blur(10px);    
 	filter: blur(10px);
 }
-.type{
-	position: absolute;
-	float: left;
-	width: 200px;
-	height: 100%;
-	display: none;
-	/* background-color: rgba(255, 255, 255, .1); */
-	color: #fff;
-}
-.type .nullbox{
-	height: 180px;
-}
-.type .btn{
-	margin: 20px auto; 
-	padding-left: 20px;
-	width: 160px;
-	height: 35px;
-	line-height: 35px;
-	background-color: #F48770;
-	cursor: pointer;
-}
 .user-info{
 	position: absolute;
 	right: 0px;
 	width: 1000px;
 	height: 100%;
+}
+.shade{
+	position: absolute;
+	top: 0px;
+	z-index: 7000;
+	width: 1000px;
+	height: 520px;
+	background-color: rgba(255, 255, 255, .2);
 }
 .user-info .option3{
 	position: relative;
@@ -89,6 +86,107 @@ canvas{
 	width: 100%;
 }
 
+/* 更换头像 */
+.editimg{
+	position: absolute;
+	top: 50px;
+	z-index: 9999;
+	margin: 50px 350px;
+	width: 300px;
+	height: 340px;
+	box-shadow: 1px 1px 5px #fff;
+	background-color: rgba(255, 255, 255, .9);
+}
+.editimg .title{
+	position: absolute;
+	top: -100px;
+	left: -80px;
+	width: 140px;
+	height: 135px;
+	color: #9F6030;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 100px;
+	transform: rotate(-50deg);
+}
+.editimg .editinp span{
+  display: block;
+  margin-top: -20px;
+  text-align: right;
+  width: 280px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0ff344;
+}
+.editimg .title .bg{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+.editimg .title span{
+	position: absolute;
+	padding-left: 20px;
+}
+.editimg input{
+	display: none;
+}
+.user-info .editimg .add-img-btn{
+	z-index: 5;
+	cursor: pointer;
+}
+.editimg .preview{
+	position: absolute;
+	z-index: 1;
+	margin: 10px;
+	width: 280px;
+	height: 280px;
+	line-height: 240px;
+	text-align: center;
+}
+.editimg .preview img:nth-of-type(2){
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+}
+.editimg .preview img:nth-of-type(1){
+	position: absolute;
+	top: 90px;
+	left: 90px;
+	width: 100px;
+}
+.user-info .editimg .btn-wrap{
+	width: 300px;
+	bottom: 10px;
+}
+.user-info .editimg .btn-wrap .btn{
+	width: 130px;
+}
+/* 更改密码 */
+.editpwd{
+	top: 100px;
+	height: 240px;
+	padding: 10px;
+}
+.editpwd .editinp{
+	margin: 10px;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #F48770;
+}
+.editpwd input{
+	display: inline-block;
+	border: 3px solid #6DDC6D;
+	border-radius: 8px;
+	width: 195px;
+	height: 30px;
+	outline: none;
+}
+/* 名字 */
 .user-info .name-wrap{
 	position: relative;
 	width: 100%;;
@@ -113,10 +211,13 @@ canvas{
 	text-align: center;
 	line-height: 20px;
 	background-color: #F48770;
+	cursor: pointer;
 }
+.user-info .name-wrap .edit:hover{
+  background-color: #0ff344;
+} 
 .user-info .name-wrap .inp{
 	position: absolute;
-	display: none;
 	top: 3px;
 	left: 60px;
 	width: 220px;
@@ -182,5 +283,10 @@ canvas{
 	text-align: center;
 	line-height: 30px;
 	font-size: 15px;
+	box-shadow: 0 2px 4px rgba(0,0,0,.16);
 	background-color: #F48770;
+	cursor: pointer;
 }
+.btn-wrap  .btn:hover{
+  background-color: #0ff344;
+} 

@@ -5,8 +5,6 @@
     <!-- <canvas id="canvas"></canvas> -->
     <!-- 返回按钮 -->
     <div class="return-btn" @click="returnbtn" v-show="showReturnbtn"></div>
-    <!-- 用户按钮 -->
-    <div class="user-btn" @click="showUserInfo"></div>
     <!-- 音乐按钮 -->
     <div class="bg-music" @click="bgmBtn($event)"> 
       <audio loop autoplay ref="bgm">
@@ -15,7 +13,7 @@
     </div>
     <div class="wrap">
       <!-- logo -->     
-      <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg}" class="logo-wrap">
+      <div ref="logoWrap" :style="{'margin-top': logoMarginTop+'px', 'margin-left': logoMarginLeft +'px', 'transform': tsfDeg, 'opacity': opacityLogo}" class="logo-wrap">
         <logo 
           :openBottom="openBottomFlag" :closeBottom="closeBottomFlag"
           :openTop="openTop" :closeTop="closeTop"
@@ -26,7 +24,8 @@
       <!-- 按钮条 -->
       <div class="content-inner" v-show="contentShow">
         <div class="btn" @click="startGame">开始</div>
-        <div class="btn" @click="showLoginWrap">登录</div>
+        <div class="btn" v-show="loginBtnShow" @click="showLoginWrap">登录</div>
+        <div class="btn" v-show="!loginBtnShow" @click="showUserInfo">{{this.userInfo.userNick}}</div>
         <div class="btn" @click="showRankWrap">排行榜</div>
       </div>
       <!-- 登录框显示 -->
@@ -47,13 +46,17 @@ export default {
   name:"index",
   components:{logo},
   mounted() {
-
+    if(this.$store.state.userInfo.userName != ""){
+      this.userInfo = this.$store.state.userInfo;
+      this.loginBtnShow = false;
+    }
   }, 
   data(){
     return{
       logoMarginTop: -250,//logo的垂直位置
       logoMarginLeft: -350,//logo的水平位置
       tsfDeg: 'rotate(0deg)',//logo 旋转角度
+      opacityLogo: 1,//logo 的透明度
       shade: true,//开始游戏的遮罩
       musicBtn: true,//true播放音乐，反之暂停音乐
       contentShow: false,//开始游戏按钮
@@ -68,6 +71,10 @@ export default {
       closeTop: false,
       openRunLogo: false,//旋转logo
       closeRunLogo: false,
+      loginBtnShow: true,//显示登录按钮，已登录为false
+      userInfo:{
+        userName: "",
+      }
     }
   },
   methods:{
@@ -147,12 +154,13 @@ export default {
       this.tsfDeg = 'rotate(90deg)';
       this.logoMarginLeft = -100;
       this.contentShow = false;
+      this.opacityLogo = 0;
     },
     /**
      * 返回按钮
      */
     returnbtn(){
-      switch( this.returnEvent){
+      switch( this.returnEvent ){
         case 1://登录返回
           this.openBottomFlag = false;
           this.closeBottomFlag= true;
@@ -173,6 +181,7 @@ export default {
           this.closeTop = false;
           break;
       }  
+      this.opacityLogo = 1;
       this.$router.push({ path: '/snake/index' });//跳转到首页
       this.contentShow = true;
       this.showReturnbtn = false;
@@ -199,7 +208,35 @@ export default {
           element.msRequestFullscreen();
       }
     }
-  }
+  },
+  watch:{
+   //通过监听路由来进行控制tab的增减，省去很多不必要的操作
+    $route(to) {
+      if('/snake/index'==to.path){
+        //刷新数据
+        if(this.$store.state.userInfo.userName != ""){
+          this.userInfo = this.$store.state.userInfo;
+          console.log(this.$store.state.userInfo);
+          console.log(this.userInfo);
+          this.loginBtnShow = false;
+        }
+        this.returnbtn();
+      }
+      if('/snake/login'==to.path){//登录页
+        this.showLoginWrap();
+        this.returnEvent = 1;
+      }
+      if('/snake/info'==to.path){//用户页
+        this.showUserInfo();
+        this.returnEvent = 3;
+      }
+      if('/snake/rank'==to.path){//排行榜
+        this.showRankWrap();
+        this.returnEvent = 2;
+      }
+     
+    }
+  }, 
 }
 </script>
 <style scoped>

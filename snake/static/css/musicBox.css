@@ -1,8 +1,8 @@
 /*
 * @Author: 哈世界
 * @Date:   2017-11-19 14:10:10
-* @Last Modified by:   哈世界
-* @Last Modified time: 2017-12-12 16:09:55
+ * @Last Modified by: Tiantong
+ * @Last Modified time: 2019-10-24 20:02:56
 */
 .option3 ul{
 	position: relative;
@@ -54,7 +54,10 @@
 	background-color: #fff;
 }
 .option3 .uid span{
+	display: block;
+	width: 145px;
 	line-height: 30px;
+	overflow: hidden;
 }
 @keyframes music{
 	0%{transform: rotateX(0deg) rotateY(0deg);}

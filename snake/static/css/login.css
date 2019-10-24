@@ -34,8 +34,9 @@
   color: #5CB43A;
 }
 .wrap .btn{
-  margin: 0 0 20px 115px;
-  width: 200px;
+  display: inline-block;
+  margin: 0 10px;
+  width: 130px;
   height: 40px;
   text-align: center;
   background-color: #74f593;
@@ -60,6 +61,9 @@
   user-select: none;
   /* Non-prefixed version, currently*/
 }
+.wrap .fir{
+  margin: 0 45px;
+}
 .wrap .btn:hover{
   background-color: #0ff344;
 } 
@@ -76,4 +80,137 @@ input::placeholder {
   font-size: 17px;
   font-weight: 400;
   letter-spacing: 2px;
+}
+/* 遮罩 */
+.shade{
+	position: absolute;
+	top: 0px;
+	z-index: 7000;
+	width: 500px;
+	height: 520px;
+	background-color: rgba(255, 255, 255, .8);
+}
+
+/* 注册 */
+.editimg{
+  position: absolute;
+  padding: 10px;
+  top: 100px;
+  left: 250px;
+  z-index: 9999;
+  width: 300px;
+	height: 240px;
+	box-shadow: 1px 1px 5px #fff;
+	background-color: rgba(255, 255, 255, .9);
+}
+.editimg .title{
+	position: absolute;
+	top: -100px;
+	left: -200px;
+	width: 140px;
+	height: 135px;
+  color: #9F6030;
+  text-align: left;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 100px;
+	transform: rotate(-50deg);
+}
+.editimg .editinp{
+	margin: 10px;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #F48770;
+}
+.editimg .editinp span{
+  display: block;
+  margin-top: -20px;
+  text-align: right;
+  width: 280px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0ff344;
+}
+.editimg input{
+	display: inline-block;
+	border: 3px solid #6DDC6D;
+	border-radius: 8px;
+	width: 215px;
+	height: 30px;
+	outline: none;
+}
+.editimg .title .bg{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+.editimg .title span{
+	position: absolute;
+  padding-left: 35px;
+  font-size: 25px;
+}
+.editimg .add-img-btn{
+	z-index: 5;
+	cursor: pointer;
+}
+.btn-wrap{
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+	bottom: 10px;
+	width: 300px;
+	height: 30px;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	font-size: 15px;
+}
+.btn-wrap .btn{
+	display: inline-block;
+	margin: 0 10px;
+	width: 130px;
+	height: 30px;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	font-size: 15px;
+	background-color: #F48770;
+	cursor: pointer;
+}
+.identifying_code{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 8px 0;
+  width: 200px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 3px solid #6DDC6D;
+}
+.identifying_code .progress{
+  position: absolute;
+  top: 0px;
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  background-color: #74f593;
+}
+.identifying_code img{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 30px;
+  height: 30px;
+}
+.identifying_code .airBroad{
+  position: absolute;
+  top: 0px;
+  width: 200px;
+  height: 30px;
 }
