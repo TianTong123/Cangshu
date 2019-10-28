@@ -58,24 +58,30 @@ export default {
       params.append('userName', this.loginForm.userName);
       params.append('userPassword', this.loginForm.userPassword);
       this.axios.post(url, params).then(res=>{
-        this.$store.state.userInfo = res.data.data.user;
-        this.$store.state.token = res.data.data.token;
-        //console.log(this.$store.state.userInfo);
-        this.$router.push({ path: '/snake/index' });//跳转到首页
-        alert("登录成功！");
+        if(res.data.code == 0){
+          this.$store.state.userInfo = res.data.data.user;
+          this.$store.state.token = res.data.data.token;
+          this.$router.push({ path: '/snake/index' });//跳转到首页
+          alert("登录成功！");
+        }else{
+          this.loginForm.userPassword = "";
+          alert("登录失败！");
+        }     
       })  
     },
      /**
      * 注册
+     * @userName 用户名
+     * @userPassword 用户密码
      */
     register(){
-      let url =  "/user/user/registered"; 
+      let url =  "/user/user/registered"; //注册接口路径
       let params = new URLSearchParams();
       params.append('userName', this.registerForm.userName);
       params.append('userPassword', this.registerForm.userPassword);
       this.axios.post(url, params).then(res=>{
-        this.editRegisterShow = false;
-        this.loginForm.userName = this.registerForm.userName;
+        this.editRegisterShow = false;//隐藏注册界面
+        this.loginForm.userName = this.registerForm.userName;//更新登录账号
         alert("注册成功");
       })  
     },

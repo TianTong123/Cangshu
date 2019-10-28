@@ -47,6 +47,7 @@
   font-size: 17px;
   font-weight: 500;
   cursor: pointer;
+  overflow: hidden;
   box-shadow: 0 2px 4px rgba(0,0,0,.16);
   -webkit-touch-callout: none;
   /* iOS Safari */

@@ -193,12 +193,14 @@ canvas{
 	height: 40px;
 	line-height: 40px;
 	color: #fff;
+	overflow: hidden;
 	/* background-color: rosybrown; */
 }
 .user-info .name-wrap .name{
 	position: relative;
 	display: inline-block;
 	margin-right: -40px;
+	width: 310px;
 	font-size: 20px;
 	font-weight: 600;
 }

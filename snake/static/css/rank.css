@@ -3,6 +3,49 @@
   height: 450px;
   overflow: hidden;
 }
+.selectbtn{
+  position: fixed;
+  top: 52px;
+  right: 200px;
+  width: 46px;
+  height: 46px;
+  border: 3px solid #fff;
+  border-radius: 25px;
+  font-size: 25px;
+  color: #fff;
+  font-weight: 500;
+}
+.selectbtn:hover ul{
+  height: 130px;
+}
+.selectbtn ul{
+  position: absolute;
+  left: -3px;
+  margin: 0px;
+  padding: 0px;
+  width: 46px;
+  height: 46px;
+  list-style: none;
+  border: 3px solid #fff;
+  border-top: 0;
+  border-radius: 25px;
+  overflow: hidden;
+  transition-duration: .5s;
+  -webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently*/
+}
+.selectbtn ul li{
+  margin: 0px;
+  padding: 0px;
+  line-height: 44px;
+  text-align: center;
+  width: 44px;
+  cursor: pointer;
+}
 .card{
   position: relative;
   left:  600px;

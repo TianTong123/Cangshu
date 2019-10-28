@@ -72,7 +72,7 @@
           <div class="snake snake_yello">最大长度:&nbsp;&nbsp;{{maxLength}}</div>
           <div class="snake snake_red">最高分数:&nbsp;&nbsp;{{maxScore}}</div>
           <div class="btn-wrap">
-            <div class="btn">账号登出</div>
+            <div class="btn" @click="logout()">账号登出</div>
             <div class="btn" @click="showEditPwd()">修改密码</div>
           </div> 
         </div>
@@ -147,13 +147,13 @@ export default {
      */
     updateName(){
       this.editInfoFlag = false;
-        let url = "/user/user/updateNick"
-        let params = new URLSearchParams();
-        params.append('token',this.$store.state.token);
-        params.append('userNick', this.userInfo.userNick);
-        this.axios.post(url, params).then(res=>{
-          this.userList = this.data;
-        })  
+      let url = "/user/user/updateNick"
+      let params = new URLSearchParams();
+      params.append('token',this.$store.state.token);
+      params.append('userNick', this.userInfo.userNick);
+      this.axios.post(url, params).then(res=>{
+        this.userList = this.data;
+      })  
     },
     /**
      * 显示更换图片窗口
@@ -182,6 +182,15 @@ export default {
      * 选择头像（触发input type="file"）
      */
     selectImg(){this.$refs.img.click();},
+
+    /**
+     * 登出
+     */
+    logout(){
+      window.location.reload();
+      alert("登出成功！");
+      return;
+    },
 
     /**
      * 本地上传图片进行预览

@@ -134,6 +134,7 @@
   animation: show-btn .6s cubic-bezier(.54,.57,.44,1.7) 1;
   animation-fill-mode: forwards;
   cursor: pointer;
+  overflow: hidden;
 }
 @keyframes show-btn{
   0%{ margin-top: 50px; opacity: 0.4;}
