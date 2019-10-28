@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
+import store from './store/store';
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
@@ -13,6 +14,7 @@ Vue.prototype.$ajax = axios
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

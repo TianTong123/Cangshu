@@ -28,3 +28,10 @@
   background-size: 600px 350px;
   background-position:-232px -97px;
 }
+.title_box2{
+  background-image: url(../images/icon.png);
+  background-repeat: no-repeat;
+  background-size: 600px 350px;
+  background-position:-435px -97px;
+  transform: rotate(15deg);
+}
