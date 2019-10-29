@@ -16,6 +16,8 @@
 		<div class="return-btn" @click="returnbtn"></div>
 		<div class="pause-btn" id="pause-btn" @click="pause"></div>
 		<div class="start-btn" id="start-btn" @click="start"></div>
+		<div class="wallon-btn" id="wallon-btn" @click="wallon_off('1')"></div>
+		<div class="walloff-btn" id="walloff-btn" @click="wallon_off('0')"></div>
 		<div id="box_2"></div>
 		<div class="main">
 			<div id="yard">
@@ -42,7 +44,7 @@
 		</div>
 		<div class="notice">
 			<img src="../../../static/images/notice.png">
-			<div class="notice_score">历史最高：<span>2000</span></div>
+			<div class="notice_score"><span>2000</span></div>
 		</div>
 		<div class="time"><span id="time"></span></div>
 		<div class="explain">
@@ -55,7 +57,7 @@
 	</div>
 </template>
 <script>
-	import {init, pause, pausemusic, time, displayTime} from '../../../static/js/game.js'  
+	import {init, pause, pausemusic, time, displayTime, setWall, clearTime} from '../../../static/js/game.js'  
     export default {  
         components: {   
 		},
@@ -71,12 +73,16 @@
 		methods: {
 			returnbtn() {
 				this.$router.push({ path: '/snake/index' });//跳转到首页
+				clearTime();
 			},
 			pause() {
 				pause();
 			},
 			start() {
 				pause();
+			},
+			wallon_off(msg) {
+				setWall(msg);
 			},
 			pausemusic() {
 				pausemusic();

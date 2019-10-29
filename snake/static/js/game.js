@@ -13,6 +13,7 @@ var interval = null;        //计时器
 var foodX = 0;              //食物X轴坐标
 var foodY = 0;              //食物Y轴坐标
 var box2;                   //屏障
+var yard;                   //画布父级
 var gameover;               //游戏结束
 var overmsg;                //再来一次
 // var continuemsg;            //继续游戏
@@ -28,7 +29,13 @@ var snakeAudio;             //游戏开始音效
 var bgmusic;                //游戏音效
 var notice2;                //告示板
 var snakecolor;             //蛇的颜色
-var fruitImage = new Image()
+var exteriorWall = 1;       //外墙设置
+var fruitImage = new Image()//画布图片
+var wall=[];                //内墙数组
+var wall_length = 0;        //内墙数组长度
+var wallonbtn;              //开墙按钮
+var walloffbtn;             //关墙按钮
+var closewall = 1;          //自动关墙
 // 绘图函数
 function draw(){
     c.clearRect(0,0,BLOCK_SIZE * COLS, BLOCK_SIZE * ROWS);
@@ -75,6 +82,38 @@ function draw(){
     c.strokeStyle = "#F56C6C";
     c.stroke();
 }
+//绘制墙
+function drawwall(x,y) {
+    c.clearRect(0,0,BLOCK_SIZE * COLS, BLOCK_SIZE * ROWS);
+    wall.push({x:x, y:y, color:"#FFFF00"});
+    wall_length++;
+    c.beginPath();
+    c.fillRect(BLOCK_SIZE *x,BLOCK_SIZE *y,BLOCK_SIZE,BLOCK_SIZE);
+    c.fillStyle = "yellow";
+    c.strokeStyle = "#484848";
+    c.lineWidth = 2;
+    c.stroke();
+    c.closePath();
+    c.fill();
+}
+//墙的位置
+function wall_location() {
+    var i,j;
+    for( i= 2,j= 5;i<15;i++)
+    {drawwall(i,j);}
+    for( i=25,j=5;i<38;i++)
+    {drawwall(i,j);}
+    for( j= 6,i=14;j<15;j++)
+    {drawwall(i,j);}
+    for( j= 6,i=25;j<15;j++)
+    {drawwall(i,j);}
+    for( i= 9,j=17;j<26;j++)
+    {drawwall(i,j);}
+    for(i=29,j=17;j<26;j++)
+    {drawwall(i,j);}
+    for(i=10,j=25;i<29;i++)
+    {drawwall(i,j);}
+}
 //游戏初始化
 function start(){
     snakes = [];
@@ -85,13 +124,16 @@ function start(){
     }
     addFood();
     draw();
-    snakeAudio.play();
+    drawwall();
+    wall_location();
+    setWall(1);
+    closewall = 1;
     oMark.innerHTML = 0;
     oNext.innerHTML = 100;
     oSpeed.innerHTML = "Level One";
     oSpeed.style.color = "#fff";
     interval = setInterval(move,snakeSpeed);
-    bgmusic.style.animationPlayState = "running";
+    sound();
 }
 //移动函数
 function move(){
@@ -180,7 +222,7 @@ function setSnakeSpeed() {
         interval = setInterval(move,speed);
     }
     else if (oMark.innerHTML >= 200 && oMark.innerHTML < 400) {
-        snakeSpeed = 60;
+        snakeSpeed = 70;
         speed = snakeSpeed;
         oNext.innerHTML = 400;
         snakecolor = "#F56C6C";
@@ -190,7 +232,7 @@ function setSnakeSpeed() {
         interval = setInterval(move,speed);
     }
     else if (oMark.innerHTML >= 400) {
-        snakeSpeed = 50;
+        snakeSpeed = 60;
         speed = snakeSpeed;
         oNext.innerHTML = "∞";
         snakecolor = "#303133";
@@ -198,6 +240,10 @@ function setSnakeSpeed() {
         oSpeed.style.color = "#ff5a5a";
         clearInterval(interval);
         interval = setInterval(move,speed);
+        if (closewall == 1) {
+            setWall(0);
+            closewall = 0;
+        }
     }
 }
 //制造食物
@@ -232,6 +278,14 @@ function startmusic() {
         bgmusic.style.animationPlayState = "running";
     }
 }
+//重新开始音效判断
+function sound() {
+    if (bgmusic.style.animationPlayState == "running") {
+        snakeAudio.play();
+    }else {
+        snakeAudio.pause();
+    }
+}
 //死亡信息
 function diemsg() {
     gameover.style.display = "block";
@@ -242,26 +296,70 @@ function diemsg() {
     box2.style.cssText = "z-index: 3";
 }
 //死亡判断
-function isDie(){
+function isDie() {
+    if(exteriorWall == 1) {
+        // Wall On
         if(snakes[snakecount - 1].x == -20 || snakes[snakecount - 1].x == BLOCK_SIZE * COLS 
                 || snakes[snakecount - 1].y == -20 || snakes[snakecount - 1].y == BLOCK_SIZE * ROWS){
                 diemsg();
                 snakeAudio.pause();
                 overAudio.play();
+                snakecolor = "red";
                 clearInterval(interval);
                 snakeSpeed = 100;
                 speed = 100;
         }
-        for(var i = 0; i < snakecount - 1; i++){
-                if(snakes[snakecount - 1].x == snakes[i].x && snakes[snakecount - 1].y == snakes[i].y){
-                    diemsg();
-                    snakeAudio.pause();
-                    overAudio.play();
-                    clearInterval(interval);
-                    snakeSpeed = 100;
-                    speed = 100;
-                }
+    }else {
+        // Wall Off
+        for (var i = 0, x = snakecount - 1; i < x; i++) {
+            if (snakes[snakecount - 1].x < 0) {
+                snakes[snakecount - 1].x = snakes[snakecount - 1].x + (BLOCK_SIZE * COLS);
+            }
+            if (snakes[snakecount - 1].x == BLOCK_SIZE * COLS) {
+                snakes[snakecount - 1].x = snakes[snakecount - 1].x - (BLOCK_SIZE * COLS);
+            }
+            if (snakes[snakecount - 1].y < 0) {
+                snakes[snakecount - 1].y = snakes[snakecount - 1].y + (BLOCK_SIZE * ROWS);
+            }
+            if (snakes[snakecount - 1].y == BLOCK_SIZE * ROWS) {
+                snakes[snakecount - 1].y = snakes[snakecount - 1].y - (BLOCK_SIZE * ROWS);
+            }
         }
+    }
+    for(var i = 0; i < snakecount - 1; i++){
+        if(snakes[snakecount - 1].x == snakes[i].x && snakes[snakecount - 1].y == snakes[i].y){
+            diemsg();
+            snakeAudio.pause();
+            overAudio.play();
+            snakecolor = "red";
+            clearInterval(interval);
+            snakeSpeed = 100;
+            speed = 100;
+        }
+    }
+}
+//设置墙
+function setWall(msg) {
+    if (msg == 1) {
+        exteriorWall = 1;
+        wallonbtn.style.left = "5%";
+        walloffbtn.style.left = "-2%";
+    }
+    else if (msg == 0) {
+        exteriorWall = 0;
+        wallonbtn.style.left = "-2%";
+        walloffbtn.style.left = "5%";
+    }
+    if (exteriorWall == 1) {
+        yard.style.border = "10px solid #ffffff9c";
+    }
+    else if (exteriorWall == 0) {
+        yard.style.border = "10px solid #ffffff00";
+    }
+}
+//返回首页清除定时器
+function clearTime() {
+    clearInterval(interval);
 }
 //时间
 function displayTime() {
@@ -279,7 +377,7 @@ function displayTime() {
         var mytime = "0" + hour + " : 0" + minutes;
     }
     else if (minutes < 10 && hour >= 10) {
-        var mytime = hour + " : " + minutes;
+        var mytime = hour + " : 0" + minutes;
     }
     else if (minutes >= 10 && hour < 10) {
         var mytime = "0" + hour + " : " + minutes;
@@ -303,8 +401,11 @@ function init(){
     oSpeed = document.getElementById('speed_con');
     oNext = document.getElementById('next_con');
     box2 = document.getElementById('box_2');
+    yard = document.getElementById('yard');
     gameover = document.getElementById('over');
     overmsg = document.getElementById('overmsg');
+    wallonbtn = document.getElementById('wallon-btn');
+    walloffbtn = document.getElementById('walloff-btn');
     // continuemsg = document.getElementById('continuemsg');
     startbtn = document.getElementById('start-btn');
     pausebtn = document.getElementById('pause-btn');
@@ -314,6 +415,7 @@ function init(){
     snakeAudio = document.querySelector('.snake-audio');
     bgmusic = document.querySelector('.bg-music');
     fruitImage.src = '../images/fruit.png';
+    bgmusic.style.animationPlayState = "running";
     start();
     document.onkeydown = function(event){
         var event = event || window.event;
@@ -327,7 +429,6 @@ function init(){
                 startbtn.classList.remove("disabled");
                 pausemsg();
                 snakeAudio.currentTime = 0;
-                snakeAudio.play();
             }
         }else {
             if (event.keyCode == 13) {
@@ -338,5 +439,5 @@ function init(){
 }
 
 export{
-    init, pause, pausemusic, time, displayTime
+    init, pause, pausemusic, time, displayTime, setWall, clearTime
 }
