@@ -13,6 +13,7 @@ var interval = null;        //计时器
 var foodX = 0;              //食物X轴坐标
 var foodY = 0;              //食物Y轴坐标
 var box2;                   //屏障
+var upload;                 //上传按钮
 var yard;                   //画布父级
 var gameover;               //游戏结束
 var overmsg;                //再来一次
@@ -290,6 +291,7 @@ function sound() {
 function diemsg() {
     gameover.style.display = "block";
     overmsg.style.display = "block";
+    upload.style.display = "block";
     startbtn.style.display = "block";
     pausebtn.style.display = "none";
     startbtn.classList.add("disabled");
@@ -413,6 +415,7 @@ function init(){
     eatAudio = document.querySelector('.eat-audio');
     overAudio = document.querySelector('.over-audio');
     snakeAudio = document.querySelector('.snake-audio');
+    upload = document.querySelector('.upload');
     bgmusic = document.querySelector('.bg-music');
     fruitImage.src = '../images/fruit.png';
     bgmusic.style.animationPlayState = "running";
@@ -426,6 +429,7 @@ function init(){
                 toGo = 3;
                 gameover.style.display = "none";
                 overmsg.style.display = "none";
+                upload.style.display = "none";
                 startbtn.classList.remove("disabled");
                 pausemsg();
                 snakeAudio.currentTime = 0;
