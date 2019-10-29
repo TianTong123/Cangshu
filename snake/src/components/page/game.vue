@@ -1,71 +1,86 @@
 <template>
 	<div class="box">
+		<div class="bg-music" @click="pausemusic"> 
+			<audio class="snake-audio" loop="loop">
+				<source src="../../../static/music/bg.mp3" type="audio/mpeg">
+			</audio>
+			<audio class="eat-audio">
+				<source src="../../../static/music/eat.mp3" type="audio/mpeg">
+			</audio>
+			<audio class="over-audio">
+				<source src="../../../static/music/over.mp3" type="audio/mpeg">
+			</audio>
+		</div>
 		<img class="bg" src="../../../static/images/timg.jpg">
+		<div class="user"><img src="../../../static/images/banana.jpg"></div>
+		<div class="return-btn" @click="returnbtn"></div>
+		<div class="pause-btn" id="pause-btn" @click="pause"></div>
+		<div class="start-btn" id="start-btn" @click="start"></div>
+		<div id="box_2"></div>
 		<div class="main">
-		<header class="wrap">
-	    <h1>—— SNAKE ——</h1>
-	    <p class="score">Score: <span id="score_value">0</span></p>
-		</header>
-		<canvas class="wrap" id="snake" width="800" height="800" tabindex="1"></canvas>
-
-		<!-- Game Over Screen -->
-		<div id="gameover">
-		    <h2>Game Over</h2>
-		    <p>press <span style="background-color: #FFFFFF; color: #000000">space</span> to begin a</p>
-		    <a id="newgame_gameover">new game</a>
-		    <a id="setting_gameover">settings</a>
+			<div id="yard">
+				<img src="../../../static/images/game.png">
+				<canvas id="canvas" height="800px" width="800px"></canvas>
+			</div>
+			<img id="over" src="../../../static/images/over.png">
+			<div class="notice_2">
+				<img src="../../../static/images/notice3.png">
+			</div>
+			<p id="overmsg">Press <span style="background-color: #FFFFFF; color: #000000">Space</span> To Begin A</p>
+			<!-- <p id="continuemsg">press <span style="background-color: #FFFFFF; color: #000000">Enter</span> to continue</p> -->
+	        <div class="score">
+	            <div id="mark">Score: <span id="mark_con"></span></div>
+	            <div id="next">Next: <span id="next_con"></span></div>
+	            <div id="speed"><span id="speed_con"></span></div>
+	        </div>
 		</div>
-
-		<!-- Setting screen -->
-		<div id="setting">
-		    <h2>Settings</h2>
-
-		    <a id="newgame_setting">new game</a>
-
-		    <p>Speed:
-		        <input id="speed1" type="radio" name="speed" value="120" checked/>
-		        <label for="speed1">Slow</label>
-		        <input id="speed2" type="radio" name="speed" value="75" />
-		        <label for="speed2">Normal</label>
-		        <input id="speed3" type="radio" name="speed" value="35" />
-		        <label for="speed3">Fast</label>
-		    </p>
-
-		    <p>Wall:
-		        <input id="wallon" type="radio" name="wall" value="1" checked/>
-		        <label for="wallon">On</label>
-		        <input id="walloff" type="radio" name="wall" value="0" />
-		        <label for="walloff">Off</label>
-		    </p>
-
+		<div class="gamename">
+			<img src="../../../static/images/name.png">
 		</div>
-
-		<!-- Main Menu Screen -->
-		<div id="menu">
-		    <h2>Snake</h2>
-
-		    <a id="newgame_menu">new game</a>
-		    <a id="setting_menu">settings</a>
+		<div class="lawn">
+			<img src="../../../static/images/lawn.png">
 		</div>
+		<div class="notice">
+			<img src="../../../static/images/notice.png">
+			<div class="notice_score">历史最高：<span>2000</span></div>
+		</div>
+		<div class="time"><span id="time"></span></div>
+		<div class="explain">
+			<span>游戏说明：</span>
+			<p>按 ↑ ↓ ← → 键来控制蛇的移动方向</p>
+			<p>游戏中 回车(Enter)暂停/继续</p>
+			<p>死亡后 空格(Space)重新开始</p>
+			<p>分数达到一定时，蛇的移动速度加快，难度提高</p>
 		</div>
 	</div>
 </template>
 <script>
-	import {init,newGame } from '../../../static/js/game.js'  
+	import {init, pause, pausemusic, time, displayTime} from '../../../static/js/game.js'  
     export default {  
-        components: {
-   
-				},
-        data () {
-					return{
-
-					}
-				},
-				mounted(){
-						init();			
-						newGame();	
-				},
+        components: {   
+		},
+        data() {
+			return {
+			}
+		},
+		mounted(){
+			init();
+			time();
+			displayTime();
+		},
 		methods: {
+			returnbtn() {
+				this.$router.push({ path: '/snake/index' });//跳转到首页
+			},
+			pause() {
+				pause();
+			},
+			start() {
+				pause();
+			},
+			pausemusic() {
+				pausemusic();
+			},
     	}
     }
 </script>
