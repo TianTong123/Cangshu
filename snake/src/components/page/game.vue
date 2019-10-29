@@ -30,6 +30,7 @@
 			</div>
 			<p id="overmsg">Press <span style="background-color: #FFFFFF; color: #000000">Space</span> To Begin A</p>
 			<!-- <p id="continuemsg">press <span style="background-color: #FFFFFF; color: #000000">Enter</span> to continue</p> -->
+			<button class="upload" @mousedown="mousedown" @mouseup="mouseup" @mouseleave="mouseup" :style="uploadstyle">Upload Score</button>
 	        <div class="score">
 	            <div id="mark">Score: <span id="mark_con"></span></div>
 	            <div id="next">Next: <span id="next_con"></span></div>
@@ -63,6 +64,9 @@
 		},
         data() {
 			return {
+				uploadstyle: {
+					boxShadow: '0 0 10px #fff',
+				}
 			}
 		},
 		mounted(){
@@ -87,6 +91,16 @@
 			pausemusic() {
 				pausemusic();
 			},
+			mousedown() {
+				this.uploadstyle = {
+					boxShadow: '0 0 10px #000',
+				}
+			},
+			mouseup() {
+				this.uploadstyle = {
+					boxShadow: '0 0 10px #fff',
+				}
+			}
     	}
     }
 </script>

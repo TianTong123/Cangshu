@@ -281,3 +281,18 @@ a {
   color: #fff;
   font-size: 20px;
 }
+.upload {
+  position: absolute;
+  z-index: 4;
+  width: 30%;
+  height: 25px;
+  left: 35%;
+  top: 640px;
+  font-size: 14px;
+  font-weight: 550;
+  border-radius: 15px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 10px #fff;
+  display: none;
+  outline: none;
+}
